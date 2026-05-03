@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atölye Stok Takip</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <h1>Atölye Stok Takip</h1>
+      <p>Profesyonel depo ve malzeme yönetimi</p>
+      <input id="username" type="text" placeholder="Kullanıcı adı" />
+      <input id="password" type="password" placeholder="Şifre" />
+      <button id="loginBtn">Giriş Yap</button>
+      <small>Demo giriş: admin / 1234</small>
+    </div>
+  </div>
+
+  <main id="app" class="app hidden">
+    <aside class="sidebar">
+      <h2>DepoPanel</h2>
+      <button class="nav-btn active" data-page="dashboard">Ana Panel</button>
+      <button class="nav-btn" data-page="inventory">Stoklar</button>
+      <button class="nav-btn" data-page="projects">Projeler</button>
+      <button id="logoutBtn" class="logout">Çıkış</button>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <h1 id="pageTitle">Ana Panel</h1>
+        <input id="searchInput" type="search" placeholder="Hızlı ara..." />
+      </header>
+
+      <section id="dashboardPage" class="page">
+        <div class="cards">
+          <div class="card"><span>Toplam Malzeme</span><strong id="totalItems">0</strong></div>
+          <div class="card"><span>Kritik Stok</span><strong id="lowStock">0</strong></div>
+          <div class="card"><span>Toplam Proje</span><strong id="totalProjects">0</strong></div>
+        </div>
+        <div class="panel">
+          <h3>Son Eklenen Malzemeler</h3>
+          <div id="recentItems"></div>
+        </div>
+      </section>
+
+      <section id="inventoryPage" class="page hidden">
+        <div class="panel">
+          <h3>Malzeme Ekle</h3>
+          <div class="form-grid">
+            <input id="itemName" placeholder="Malzeme adı" />
+            <input id="itemCategory" placeholder="Kategori" />
+            <input id="itemQuantity" type="number" placeholder="Adet" />
+            <input id="itemMin" type="number" placeholder="Kritik stok sınırı" />
+            <button id="addItemBtn">Ekle</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Stok Listesi</h3>
+            <button id="exportCsvBtn">CSV İndir</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Kod</th><th>Ad</th><th>Kategori</th><th>Adet</th><th>Durum</th><th>İşlem</th></tr>
+              </thead>
+              <tbody id="inventoryTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="projectsPage" class="page hidden">
+        <div class="panel">
+          <h3>Proje Oluştur</h3>
+          <div class="form-grid">
+            <input id="projectName" placeholder="Proje adı" />
+            <input id="projectOwner" placeholder="Sorumlu kişi" />
+            <button id="addProjectBtn">Proje Ekle</button>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Projeler</h3>
+          <div id="projectList" class="project-list"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/inventory.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
